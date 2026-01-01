@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -228,7 +229,7 @@ export default function DashboardPage() {
                   </Button>
                 ) : (
                   <p className="text-sm text-muted-foreground mt-1">
-                    {user.credits} / 3 analyses left
+                    {user.credits} / 10 analyses left
                   </p>
                 )}
               </CardContent>
@@ -307,10 +308,19 @@ export default function DashboardPage() {
           <CardContent>
             {analyses.length === 0 ? (
               <div className="text-center py-12">
-                <FileText className="size-12 text-muted-foreground mx-auto mb-4" />
+                <div className="relative mx-auto mb-6 h-48 w-full max-w-[400px] overflow-hidden rounded-lg shadow-md">
+                  <Image 
+                    src="/aianalysingsuggestions.png" 
+                    alt="AI Analysis Preview" 
+                    fill 
+                    className="object-cover object-top"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-background/80 to-transparent" />
+                </div>
                 <h3 className="text-lg font-medium mb-2">No analyses yet</h3>
-                <p className="text-muted-foreground mb-6">
-                  Upload your first resume to get an ATS score
+                <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+                  Upload your first resume to get detailed AI feedback and an ATS score. 
+                  See exactly what to improve to land more interviews.
                 </p>
                 <Button asChild>
                   <Link href="/ats-score">
@@ -433,6 +443,47 @@ export default function DashboardPage() {
             )}
           </CardContent>
         </Card>
+
+        {/* Pro Tips Section */}
+        <div className="grid md:grid-cols-2 gap-6 mt-8">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Pro Tip: Use Smart Sections</CardTitle>
+              <CardDescription>
+                Easily add detailed project sections with customizable options to showcase your technical skills effectively.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="relative aspect-video w-full overflow-hidden rounded-md border shadow-sm">
+                <Image 
+                  src="/egprojectsectionwithoptions.png"
+                  alt="Project Section Builder"
+                  fill
+                  className="object-cover object-top"
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Understand Your Score</CardTitle>
+              <CardDescription>
+                Get a detailed breakdown of what ATS systems look for, including keyword matching and section formatting.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="relative aspect-video w-full overflow-hidden rounded-md border shadow-sm">
+                <Image 
+                  src="/detailedsectionschecks.png"
+                  alt="Detailed ATS Checks"
+                  fill
+                  className="object-cover object-top"
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </Background>
   );

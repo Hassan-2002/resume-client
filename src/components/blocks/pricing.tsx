@@ -123,6 +123,13 @@ export const Pricing = ({ className }: { className?: string }) => {
                 <Button
                   className="w-fit"
                   variant={plan.name === "Pro" ? "default" : "outline"}
+                  onClick={() => {
+                    if (plan.name !== "Free") {
+                      alert("🚀 Coming Soon! Premium subscriptions will be available shortly.");
+                    } else {
+                      window.location.href = "/signup";
+                    }
+                  }}
                 >
                   {plan.name === "Free" ? "Start Free" : "Get Started"}
                 </Button>

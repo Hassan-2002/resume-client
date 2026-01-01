@@ -188,7 +188,7 @@ export const dummyResumeData: ResumeData = {
       highlights: [
         "Integrated Gemini AI for intelligent resume suggestions",
         "Implemented ATS scoring system with detailed feedback",
-        "Built responsive UI with shadcn/ui components"
+        "Built responsive UI with modern UI library components"
       ]
     },
     {

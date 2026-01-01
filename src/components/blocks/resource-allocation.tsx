@@ -11,8 +11,8 @@ const topItems = [
       "Choose from ATS-optimized templates designed by hiring experts and powered by AI.",
     images: [
       {
-        src: "/resource-allocation/templates.webp",
-        alt: "Resume template interface",
+        src: "/egprojectsectionwithoptions.png",
+        alt: "Resume builder interface",
         width: 495,
         height: 186,
       },
@@ -25,34 +25,12 @@ const topItems = [
     title: "Replace outdated resume tools.",
     description: "No more generic Word templates or expensive design software.",
     images: [
-      { src: "/logos/jira.svg", alt: "Jira logo", width: 48, height: 48 },
-      { src: "/logos/excel.svg", alt: "Excel logo", width: 48, height: 48 },
       {
-        src: "/logos/notion.svg",
-        alt: "Notion logo",
-        width: 48,
-        height: 48,
+        src: "/writewithaibutton.png",
+        alt: "AI writing assistant",
+        width: 300,
+        height: 100,
       },
-      { src: "/logos/word.svg", alt: "Word logo", width: 48, height: 48 },
-      {
-        src: "/logos/monday.svg",
-        alt: "Monday logo",
-        width: 48,
-        height: 48,
-      },
-      {
-        src: "/logos/drive.svg",
-        alt: "Google Drive logo",
-        width: 48,
-        height: 48,
-      },
-      {
-        src: "/logos/jira.svg",
-        alt: "Jira logo",
-        width: 48,
-        height: 48,
-      },
-      { src: "/logos/asana.svg", alt: "Asana logo", width: 48, height: 48 },
     ],
     className:
       "flex-1 [&>.title-container]:mb-5 md:[&>.title-container]:mb-8 md:[&>.title-container]:translate-x-2 xl:[&>.title-container]:translate-x-4 [&>.title-container]:translate-x-0",
@@ -67,7 +45,7 @@ const bottomItems = [
       "Get real-time feedback on how well your resume performs against applicant tracking systems.",
     images: [
       {
-        src: "/resource-allocation/graveyard.webp",
+        src: "/aisuggestioncomparestoexistingwithscore.png",
         alt: "ATS Score interface",
         width: 305,
         height: 280,
@@ -83,7 +61,7 @@ const bottomItems = [
       "AI analyzes job descriptions and automatically optimizes your resume with the right keywords.",
     images: [
       {
-        src: "/resource-allocation/discussions.webp",
+        src: "/suggestion.png",
         alt: "Keyword optimization interface",
         width: 320,
         height: 103,
@@ -99,8 +77,8 @@ const bottomItems = [
       "Get notified when your optimized resume lands you more interview invitations.",
     images: [
       {
-        src: "/resource-allocation/notifications.webp",
-        alt: "Notifications interface",
+        src: "/detailedsectionschecks.png",
+        alt: "Detailed checks interface",
         width: 305,
         height: 280,
       },

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 import { ArrowRight } from "lucide-react";
@@ -16,34 +18,6 @@ import {
 import { cn } from "@/lib/utils";
 
 const items = [
-  {
-    quote: "Got 3x more interviews after using this AI resume builder!",
-    author: "Sarah Chen",
-    role: "Software Engineer",
-    company: "Google",
-    image: "/testimonials/amy-chase.webp",
-  },
-  {
-    quote: "Finally landed my dream job at Microsoft. The ATS optimization really works!",
-    author: "Marcus Johnson",
-    role: "Product Manager",
-    company: "Microsoft",
-    image: "/testimonials/jonas-kotara.webp",
-  },
-  {
-    quote: "Went from 0 responses to 15 interview calls in 2 weeks.",
-    author: "Jessica Liu",
-    role: "Data Scientist",
-    company: "Meta",
-    image: "/testimonials/kevin-yam.webp",
-  },
-  {
-    quote: "The AI suggestions improved my resume score from 45% to 95%!",
-    author: "David Rodriguez",
-    role: "UX Designer",
-    company: "Apple",
-    image: "/testimonials/kundo-marta.webp",
-  },
   {
     quote: "Got 3x more interviews after using this AI resume builder!",
     author: "Sarah Chen",
@@ -92,7 +66,7 @@ export const Testimonials = ({
             <p className="text-muted-foreground max-w-md leading-snug">
               Join thousands of professionals who've landed their dream jobs using our AI-powered resume optimization technology.
             </p>
-            <Button variant="outline" className="shadow-md">
+            <Button variant="outline" className="shadow-md" onClick={() => alert("Success stories coming soon!")}>
               Read Success Stories <ArrowRight className="size-4" />
             </Button>
           </div>

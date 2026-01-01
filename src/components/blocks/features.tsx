@@ -9,16 +9,19 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const items = [
   {
-    title: "AI-Powered Resume Optimization",
-    image: "/features/triage-card.svg",
+    title: "AI-Powered Resume Analysis",
+    image: "/aisuggestioncomparestoexistingwithscore.png",
+    href: "/ats-score",
   },
   {
-    title: "Beat ATS Systems Every Time",
-    image: "/features/cycle-card.svg",
+    title: "Smart Section Builder",
+    image: "/egprojectsectionwithoptions.png",
+    href: "/resume-builder",
   },
   {
-    title: "Land More Interviews Guaranteed",
-    image: "/features/overview-card.svg",
+    title: "Detailed ATS Checks",
+    image: "/detailedsectionschecks.png",
+    href: "/ats-score",
   },
 ];
 
@@ -61,7 +64,7 @@ export const Features = () => {
                   </div>
 
                   <Link
-                    href="#"
+                    href={item.href}
                     className={
                       "group flex items-center justify-between gap-4 pe-4 pt-4 md:pe-6 md:pt-6"
                     }

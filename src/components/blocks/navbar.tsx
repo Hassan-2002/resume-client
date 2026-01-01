@@ -152,13 +152,7 @@ export const Navbar = () => {
             )
           )}
           
-          <a
-            href="https://github.com/shadcnblocks/mainline-nextjs-template"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <Github className="size-4" />
-            <span className="sr-only">GitHub</span>
-          </a>
+
 
           {/* Hamburger Menu Button (Mobile Only) */}
           <button
