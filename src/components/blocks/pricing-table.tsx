@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 import { Check, ChevronsUpDown, X } from "lucide-react";
 
@@ -24,94 +25,114 @@ interface FeatureSection {
 const pricingPlans = [
   {
     name: "Free",
+    price: "$0",
+    period: "forever",
     button: {
       text: "Get started",
       variant: "outline" as const,
+      href: "/signup",
     },
   },
   {
-    name: "Startup",
+    name: "Pro",
+    price: "$9",
+    period: "/month",
     button: {
-      text: "Get started",
-      variant: "outline" as const,
+      text: "Upgrade now",
+      variant: "default" as const,
+      href: "/signup?plan=pro",
     },
   },
   {
     name: "Enterprise",
+    price: "Custom",
+    period: "",
     button: {
-      text: "Get a demo",
+      text: "Contact sales",
       variant: "outline" as const,
+      href: "/contact",
     },
   },
 ];
 
 const comparisonFeatures: FeatureSection[] = [
   {
-    category: "Usage",
+    category: "Resume Analysis",
     features: [
       {
-        name: "Members",
-        free: "Unlimited",
+        name: "ATS Score Analysis",
+        free: "3 credits",
         startup: "Unlimited",
         enterprise: "Unlimited",
       },
       {
-        name: "Transactions",
-        free: "250",
-        startup: "Unlimited",
-        enterprise: "Unlimited",
+        name: "Keyword Optimization",
+        free: true,
+        startup: true,
+        enterprise: true,
       },
       {
-        name: "Teams",
-        free: "2",
+        name: "Job Description Matching",
+        free: true,
+        startup: true,
+        enterprise: true,
+      },
+      {
+        name: "Detailed Recommendations",
+        free: true,
+        startup: true,
+        enterprise: true,
+      },
+    ],
+  },
+  {
+    category: "Resume Builder",
+    features: [
+      {
+        name: "Professional Templates",
+        free: "3 templates",
+        startup: "All templates",
+        enterprise: "Custom templates",
+      },
+      {
+        name: "AI-Powered Suggestions",
+        free: null,
+        startup: true,
+        enterprise: true,
+      },
+      {
+        name: "Export to PDF",
+        free: true,
+        startup: true,
+        enterprise: true,
+      },
+      {
+        name: "Multiple Resume Versions",
+        free: "1 resume",
         startup: "Unlimited",
         enterprise: "Unlimited",
       },
     ],
   },
   {
-    category: "Features",
+    category: "AI Features",
     features: [
       {
-        name: "Reporting",
-        free: true,
-        startup: true,
-        enterprise: true,
-      },
-      {
-        name: "Analytics",
-        free: true,
-        startup: true,
-        enterprise: true,
-      },
-      {
-        name: "Import and export",
-        free: true,
-        startup: true,
-        enterprise: true,
-      },
-      {
-        name: "Integrations",
-        free: true,
-        startup: true,
-        enterprise: true,
-      },
-      {
-        name: "Mainline AI",
+        name: "Gemini AI Integration",
         free: null,
         startup: true,
         enterprise: true,
       },
       {
-        name: "Admin roles",
+        name: "Smart Content Generation",
         free: null,
-        startup: null,
+        startup: true,
         enterprise: true,
       },
       {
-        name: "Audit log",
+        name: "Industry-Specific Optimization",
         free: null,
-        startup: null,
+        startup: true,
         enterprise: true,
       },
     ],
@@ -120,19 +141,19 @@ const comparisonFeatures: FeatureSection[] = [
     category: "Support",
     features: [
       {
-        name: "Priority Support",
+        name: "Email Support",
         free: true,
         startup: true,
         enterprise: true,
       },
       {
-        name: "Account Manager",
+        name: "Priority Support",
         free: null,
-        startup: null,
+        startup: true,
         enterprise: true,
       },
       {
-        name: "Uptime SLA",
+        name: "Dedicated Account Manager",
         free: null,
         startup: null,
         enterprise: true,
@@ -143,25 +164,25 @@ const comparisonFeatures: FeatureSection[] = [
 
 const renderFeatureValue = (value: true | false | null | string) => {
   if (value === true) {
-    return <Check className="size-5" />;
+    return <Check className="size-5 text-green-600" />;
   }
   if (value === false) {
-    return <X className="size-5" />;
+    return <X className="size-5 text-red-500" />;
   }
   if (value === null) {
-    return null;
+    return <span className="text-muted-foreground">—</span>;
   }
   // String value
   return (
     <div className="flex items-center gap-2">
-      <Check className="size-4" />
+      <Check className="size-4 text-green-600" />
       <span className="text-muted-foreground">{value}</span>
     </div>
   );
 };
 
 export const PricingTable = () => {
-  const [selectedPlan, setSelectedPlan] = useState(1); // Default to Startup plan
+  const [selectedPlan, setSelectedPlan] = useState(1); // Default to Pro plan
 
   return (
     <section className="pb-28 lg:py-32">
@@ -192,9 +213,15 @@ const PlanHeaders = ({
         <Collapsible open={isOpen} onOpenChange={setIsOpen} className="">
           <div className="flex items-center justify-between border-b py-4">
             <CollapsibleTrigger className="flex items-center gap-2">
-              <h3 className="text-2xl font-semibold">
-                {pricingPlans[selectedPlan].name}
-              </h3>
+              <div>
+                <h3 className="text-2xl font-semibold">
+                  {pricingPlans[selectedPlan].name}
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  {pricingPlans[selectedPlan].price}
+                  {pricingPlans[selectedPlan].period}
+                </p>
+              </div>
               <ChevronsUpDown
                 className={`size-5 transition-transform ${isOpen ? "rotate-180" : ""}`}
               />
@@ -202,8 +229,11 @@ const PlanHeaders = ({
             <Button
               variant={pricingPlans[selectedPlan].button.variant}
               className="w-fit"
+              asChild
             >
-              {pricingPlans[selectedPlan].button.text}
+              <Link href={pricingPlans[selectedPlan].button.href}>
+                {pricingPlans[selectedPlan].button.text}
+              </Link>
             </Button>
           </div>
           <CollapsibleContent className="flex flex-col space-y-2 p-2">
@@ -219,7 +249,7 @@ const PlanHeaders = ({
                       setIsOpen(false);
                     }}
                   >
-                    {plan.name}
+                    {plan.name} - {plan.price}{plan.period}
                   </Button>
                 ),
             )}
@@ -233,9 +263,13 @@ const PlanHeaders = ({
 
         {pricingPlans.map((plan, index) => (
           <div key={index} className="">
-            <h3 className="mb-3 text-2xl font-semibold">{plan.name}</h3>
-            <Button variant={plan.button.variant} className="">
-              {plan.button.text}
+            <h3 className="mb-1 text-2xl font-semibold">{plan.name}</h3>
+            <p className="text-muted-foreground mb-3">
+              <span className="text-foreground text-3xl font-bold">{plan.price}</span>
+              {plan.period}
+            </p>
+            <Button variant={plan.button.variant} className="" asChild>
+              <Link href={plan.button.href}>{plan.button.text}</Link>
             </Button>
           </div>
         ))}

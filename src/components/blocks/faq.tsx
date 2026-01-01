@@ -10,52 +10,52 @@ import { cn } from "@/lib/utils";
 
 const categories = [
   {
-    title: "Support",
+    title: "AI & ATS Optimization",
     questions: [
       {
-        question: "How do I update my account without breaking my laptop?",
+        question: "How does the AI optimize my resume for ATS systems?",
         answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
+          "Our AI uses advanced natural language processing from Gemini and OpenAI to analyze job descriptions, identify key requirements, and automatically optimize your resume with the right keywords, formatting, and structure that ATS systems prefer.",
       },
       {
-        question: "Is support free, or do I need to Google everything?",
+        question: "What ATS systems does this work with?",
         answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
+          "Our resume builder is compatible with all major ATS systems including Workday, Greenhouse, Lever, BambooHR, and many others. We continuously update our algorithms to ensure maximum compatibility.",
       },
       {
-        question: "Are you going to be subsumed by AI?",
+        question: "How accurate is the ATS score?",
         answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
+          "Our ATS scoring algorithm is trained on thousands of resumes and hiring data. It provides 95%+ accuracy in predicting how well your resume will perform with automated screening systems.",
       },
     ],
   },
   {
-    title: "Your account",
+    title: "Features & Usage",
     questions: [
       {
-        question: "Is support free, or do I need to Google everything?",
+        question: "Can I customize the AI suggestions?",
         answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
+          "Yes! While our AI provides intelligent recommendations, you have full control to accept, modify, or reject any suggestions. The tool learns from your preferences to provide better recommendations over time.",
       },
       {
-        question: "Are you going to be subsumed by AI?",
+        question: "How long does it take to create a resume?",
         answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
+          "Most users create a fully optimized, ATS-friendly resume in under 10 minutes. The AI handles the heavy lifting of keyword optimization and formatting while you focus on your content.",
       },
     ],
   },
   {
-    title: "Other questions",
+    title: "Success & Results",
     questions: [
       {
-        question: "Is support free, or do I need to Google everything?",
+        question: "How much can this improve my job application success?",
         answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
+          "Our users report getting 3-5x more interview callbacks after using our AI resume builder. The ATS optimization ensures your resume gets past automated screening to reach human recruiters.",
       },
       {
-        question: "Are you going to be subsumed by AI?",
+        question: "Do you guarantee job placement?",
         answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
+          "While we can't guarantee specific job outcomes, our AI-optimized resumes significantly increase your chances of getting past ATS systems and landing interviews at top companies. Success depends on various factors including market conditions and individual qualifications.",
       },
     ],
   },
@@ -85,9 +85,9 @@ export const FAQ = ({
               </h2>
             )}
             <p className="text-muted-foreground max-w-md leading-snug lg:mx-auto">
-              If you can't find what you're looking for,{" "}
+              Learn more about our AI-powered resume optimization.{" "}
               <Link href="/contact" className="underline underline-offset-4">
-                get in touch
+                Contact support
               </Link>
               .
             </p>

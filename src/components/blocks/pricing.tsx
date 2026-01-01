@@ -14,37 +14,40 @@ const plans = [
     name: "Free",
     monthlyPrice: "$0",
     yearlyPrice: "$0",
-    description: "Free for everyone",
+    description: "Perfect for getting started",
     features: [
-      "Unlimited members",
-      "2 teams",
-      "500 issues",
-      "Slack and Github integrations",
+      "1 AI-optimized resume",
+      "Basic ATS score analysis",
+      "5 resume templates",
+      "PDF download",
     ],
   },
   {
-    name: "Startup",
-    monthlyPrice: "$8",
-    yearlyPrice: "$6",
+    name: "Pro",
+    monthlyPrice: "$19",
+    yearlyPrice: "$15",
     features: [
-      "All free plan features and...",
-      "Mainline AI",
-      "Unlimited teams",
-      "Unlimited issues and file uploads",
-      "Mainline Insights",
-      "Admin roles",
+      "Everything in Free and...",
+      "Unlimited AI-optimized resumes",
+      "Advanced ATS analysis",
+      "Job description matching",
+      "50+ premium templates",
+      "Cover letter generation",
+      "Priority support",
     ],
   },
   {
     name: "Enterprise",
-    monthlyPrice: "$8",
-    yearlyPrice: "$6",
+    monthlyPrice: "$49",
+    yearlyPrice: "$39",
     features: [
-      "All free plan features and...",
-      "Mainline AI",
-      "Supermainline AGI",
-      "Free daily catered lunch",
-      "random HIPPA audits",
+      "Everything in Pro and...",
+      "Team collaboration",
+      "Custom branding",
+      "API access",
+      "Advanced analytics",
+      "Dedicated account manager",
+      "Custom integrations",
     ],
   },
 ];
@@ -57,12 +60,10 @@ export const Pricing = ({ className }: { className?: string }) => {
       <div className="container max-w-5xl">
         <div className="space-y-4 text-center">
           <h2 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">
-            Pricing
+            Choose Your Plan
           </h2>
           <p className="text-muted-foreground mx-auto max-w-xl leading-snug text-balance">
-            Use Mainline for free with your whole team. Upgrade to enable
-            unlimited issues, enhanced security controls, and additional
-            features.
+            Start building ATS-optimized resumes for free. Upgrade for unlimited access to our AI-powered features and land your dream job faster.
           </p>
         </div>
 
@@ -71,7 +72,7 @@ export const Pricing = ({ className }: { className?: string }) => {
             <Card
               key={plan.name}
               className={`${
-                plan.name === "Startup"
+                plan.name === "Pro"
                   ? "outline-primary origin-top outline-4"
                   : ""
               }`}
@@ -121,9 +122,9 @@ export const Pricing = ({ className }: { className?: string }) => {
 
                 <Button
                   className="w-fit"
-                  variant={plan.name === "Startup" ? "default" : "outline"}
+                  variant={plan.name === "Pro" ? "default" : "outline"}
                 >
-                  Get started
+                  {plan.name === "Free" ? "Start Free" : "Get Started"}
                 </Button>
               </CardContent>
             </Card>

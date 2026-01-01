@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { ChevronRight, Github } from "lucide-react";
+import { ChevronRight, Github, LayoutDashboard, LogOut, User } from "lucide-react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -19,6 +19,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/lib/auth-context";
 
 const ITEMS = [
   {
@@ -26,15 +27,16 @@ const ITEMS = [
     href: "#features",
     dropdownItems: [
       {
-        title: "Modern product teams",
-        href: "/#feature-modern-teams",
+        title: "ATS Score Checker",
+        href: "/ats-score",
         description:
-          "Mainline is built on the habits that make the best product teams successful",
+          "Get your free ATS score and see how well your resume performs with applicant tracking systems",
       },
       {
-        title: "Resource Allocation",
-        href: "/#resource-allocation",
-        description: "Mainline your resource allocation and execution",
+        title: "Resume Builder",
+        href: "/resume-builder",
+        description:
+          "Build a professional resume with AI-powered suggestions and templates",
       },
     ],
   },
@@ -48,19 +50,20 @@ export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
+  const { isAuthenticated, user, logout, isLoading } = useAuth();
 
   return (
     <section
       className={cn(
-        "bg-background/70 absolute left-1/2 z-50 w-[min(90%,700px)] -translate-x-1/2 rounded-4xl border backdrop-blur-md transition-all duration-300",
+        "bg-background/70 absolute left-1/2 z-50 w-[min(95%,900px)] -translate-x-1/2 rounded-4xl border backdrop-blur-md transition-all duration-300",
         "top-5 lg:top-12",
       )}
     >
       <div className="flex items-center justify-between px-6 py-3">
-        <Link href="/" className="flex shrink-0 items-center gap-2">
+        <Link href={isAuthenticated ? "/dashboard" : "/"} className="flex shrink-0 items-center gap-2">
           <Image
             src="/logo.svg"
-            alt="logo"
+            alt="Mainline CV"
             width={94}
             height={18}
             className="dark:invert"
@@ -120,11 +123,35 @@ export const Navbar = () => {
         {/* Auth Buttons */}
         <div className="flex items-center gap-2.5">
           <ThemeToggle />
-          <Link href="/login" className="max-lg:hidden">
-            <Button variant="outline">
-              <span className="relative z-10">Login</span>
-            </Button>
-          </Link>
+          
+          {!isLoading && (
+            isAuthenticated ? (
+              <>
+                <Link href="/dashboard" className="max-lg:hidden">
+                  <Button variant="outline" size="sm">
+                    <LayoutDashboard className="size-4 mr-1.5" />
+                    Dashboard
+                  </Button>
+                </Link>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  onClick={logout}
+                  className="max-lg:hidden"
+                  title="Logout"
+                >
+                  <LogOut className="size-4" />
+                </Button>
+              </>
+            ) : (
+              <Link href="/login" className="max-lg:hidden">
+                <Button variant="outline">
+                  <span className="relative z-10">Login</span>
+                </Button>
+              </Link>
+            )
+          )}
+          
           <a
             href="https://github.com/shadcnblocks/mainline-nextjs-template"
             className="text-muted-foreground hover:text-foreground transition-colors"

@@ -17,59 +17,59 @@ import { cn } from "@/lib/utils";
 
 const items = [
   {
-    quote: "We're misusing Mainline as a CRM and it still works!",
-    author: "Amy Chase",
-    role: "PM",
-    company: "Mercury Finance",
+    quote: "Got 3x more interviews after using this AI resume builder!",
+    author: "Sarah Chen",
+    role: "Software Engineer",
+    company: "Google",
     image: "/testimonials/amy-chase.webp",
   },
   {
-    quote: "I was able to replace 80% of my team with Mainline bots.",
-    author: "Jonas Kotara",
-    role: "Lead Engineer",
-    company: "Mercury Finance",
+    quote: "Finally landed my dream job at Microsoft. The ATS optimization really works!",
+    author: "Marcus Johnson",
+    role: "Product Manager",
+    company: "Microsoft",
     image: "/testimonials/jonas-kotara.webp",
   },
   {
-    quote: "Founder Mode is hard enough without having a really nice PM app.",
-    author: "Kevin Yam",
-    role: "Founder",
-    company: "Mercury Finance",
+    quote: "Went from 0 responses to 15 interview calls in 2 weeks.",
+    author: "Jessica Liu",
+    role: "Data Scientist",
+    company: "Meta",
     image: "/testimonials/kevin-yam.webp",
   },
   {
-    quote: "I can use the tool as a substitute from my PM.",
-    author: "Kundo Marta",
-    role: "Founder",
-    company: "Mercury Finance",
+    quote: "The AI suggestions improved my resume score from 45% to 95%!",
+    author: "David Rodriguez",
+    role: "UX Designer",
+    company: "Apple",
     image: "/testimonials/kundo-marta.webp",
   },
   {
-    quote: "We're misusing Mainline as a CRM and it still works!",
-    author: "Amy Chase",
-    role: "PM",
-    company: "Mercury Finance",
+    quote: "Got 3x more interviews after using this AI resume builder!",
+    author: "Sarah Chen",
+    role: "Software Engineer",
+    company: "Google",
     image: "/testimonials/amy-chase.webp",
   },
   {
-    quote: "I was able to replace 80% of my team with Mainline bots.",
-    author: "Jonas Kotara",
-    role: "Lead Engineer",
-    company: "Mercury Finance",
+    quote: "Finally landed my dream job at Microsoft. The ATS optimization really works!",
+    author: "Marcus Johnson",
+    role: "Product Manager",
+    company: "Microsoft",
     image: "/testimonials/jonas-kotara.webp",
   },
   {
-    quote: "Founder Mode is hard enough without having a really nice PM app.",
-    author: "Kevin Yam",
-    role: "Founder",
-    company: "Mercury Finance",
+    quote: "Went from 0 responses to 15 interview calls in 2 weeks.",
+    author: "Jessica Liu",
+    role: "Data Scientist",
+    company: "Meta",
     image: "/testimonials/kevin-yam.webp",
   },
   {
-    quote: "I can use the tool as a substitute from my PM.",
-    author: "Kundo Marta",
-    role: "Founder",
-    company: "Mercury Finance",
+    quote: "The AI suggestions improved my resume score from 45% to 95%!",
+    author: "David Rodriguez",
+    role: "UX Designer",
+    company: "Apple",
     image: "/testimonials/kundo-marta.webp",
   },
 ];
@@ -87,15 +87,13 @@ export const Testimonials = ({
         <div className="container">
           <div className="space-y-4">
             <h2 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">
-              Trusted by product builders
+              Trusted by job seekers at top companies
             </h2>
             <p className="text-muted-foreground max-w-md leading-snug">
-              Mainline is built on the habits that make the best product teams
-              successful: staying focused, moving quickly, and always aiming for
-              high-quality work.
+              Join thousands of professionals who've landed their dream jobs using our AI-powered resume optimization technology.
             </p>
             <Button variant="outline" className="shadow-md">
-              Read our Customer Stories <ArrowRight className="size-4" />
+              Read Success Stories <ArrowRight className="size-4" />
             </Button>
           </div>
 

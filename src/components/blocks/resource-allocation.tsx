@@ -6,13 +6,13 @@ import { cn } from "@/lib/utils";
 
 const topItems = [
   {
-    title: "Reusable issue templates.",
+    title: "Smart resume templates.",
     description:
-      "Draft lightning-fast documents with our Smart Instructions and Templates.",
+      "Choose from ATS-optimized templates designed by hiring experts and powered by AI.",
     images: [
       {
         src: "/resource-allocation/templates.webp",
-        alt: "Issue template interface",
+        alt: "Resume template interface",
         width: 495,
         height: 186,
       },
@@ -22,8 +22,8 @@ const topItems = [
     fade: [""],
   },
   {
-    title: "Simplify your stack.",
-    description: "No more Confluence, SharePoint, or Microsoft Word.",
+    title: "Replace outdated resume tools.",
+    description: "No more generic Word templates or expensive design software.",
     images: [
       { src: "/logos/jira.svg", alt: "Jira logo", width: 48, height: 48 },
       { src: "/logos/excel.svg", alt: "Excel logo", width: 48, height: 48 },
@@ -62,13 +62,13 @@ const topItems = [
 
 const bottomItems = [
   {
-    title: "Graveyard it.",
+    title: "ATS Score Analysis.",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do.",
+      "Get real-time feedback on how well your resume performs against applicant tracking systems.",
     images: [
       {
         src: "/resource-allocation/graveyard.webp",
-        alt: "Graveyard interface",
+        alt: "ATS Score interface",
         width: 305,
         height: 280,
       },
@@ -78,13 +78,13 @@ const bottomItems = [
     fade: ["bottom"],
   },
   {
-    title: "Task discussions.",
+    title: "Smart keyword optimization.",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.",
+      "AI analyzes job descriptions and automatically optimizes your resume with the right keywords.",
     images: [
       {
         src: "/resource-allocation/discussions.webp",
-        alt: "Task discussions interface",
+        alt: "Keyword optimization interface",
         width: 320,
         height: 103,
       },
@@ -94,9 +94,9 @@ const bottomItems = [
     fade: [""],
   },
   {
-    title: "Notifications.",
+    title: "Interview alerts.",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.",
+      "Get notified when your optimized resume lands you more interview invitations.",
     images: [
       {
         src: "/resource-allocation/notifications.webp",
@@ -119,7 +119,7 @@ export const ResourceAllocation = () => {
     >
       <div className="">
         <h2 className="container text-center text-3xl tracking-tight text-balance sm:text-4xl md:text-5xl lg:text-6xl">
-          Mainline your resource allocation and execution
+          Turn your experience into interview opportunities
         </h2>
 
         <div className="mt-8 md:mt-12 lg:mt-20">

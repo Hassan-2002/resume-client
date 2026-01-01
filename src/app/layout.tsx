@@ -3,10 +3,10 @@ import localFont from "next/font/local";
 
 import type { Metadata } from "next";
 
-import { Footer } from "@/components/blocks/footer";
-import { Navbar } from "@/components/blocks/navbar";
+import { LayoutWrapper } from "@/components/layout-wrapper";
 import { StyleGlideProvider } from "@/components/styleglide-provider";
 import { ThemeProvider } from "@/components/theme-provider";
+import { AuthProvider } from "@/lib/auth-context";
 import "@/styles/globals.css";
 
 const dmSans = localFont({
@@ -63,29 +63,26 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Mainline - Modern Next.js Template",
-    template: "%s | Mainline",
+    default: "Mainline CV - AI-Powered Resume Builder",
+    template: "%s | Mainline CV",
   },
   description:
-    "A modern Next.js template built with shadcn/ui, Tailwind & MDX. Open source - MIT License.",
+    "Build professional resumes with AI-powered suggestions, ATS optimization, and multiple templates. Get your dream job with Mainline CV.",
   keywords: [
-    "Next.js",
-    "nextjs template",
-    "nextjs theme",
-    "nextjs starter",
-    "shadcn template",
-    "shadcn theme",
-    "shadcn starter",
-    "tailwind template",
-    "tailwind theme",
-    "tailwind starter",
-    "mdx template",
-    "mdx theme",
-    "mdx starter",
+    "resume builder",
+    "CV maker",
+    "ATS resume",
+    "AI resume",
+    "professional resume",
+    "job application",
+    "career",
+    "resume templates",
+    "ATS score",
+    "resume optimization",
   ],
-  authors: [{ name: "shadcnblocks.com" }],
-  creator: "shadcnblocks.com",
-  publisher: "shadcnblocks.com",
+  authors: [{ name: "Mainline CV" }],
+  creator: "Mainline CV",
+  publisher: "Mainline CV",
   robots: {
     index: true,
     follow: true,
@@ -102,26 +99,26 @@ export const metadata: Metadata = {
     shortcut: [{ url: "/favicon/favicon.ico" }],
   },
   openGraph: {
-    title: "Mainline - Modern Next.js Template",
+    title: "Mainline CV - AI-Powered Resume Builder",
     description:
-      "A modern Next.js template built with shadcn/ui, Tailwind & MDX. Open source - MIT License.",
-    siteName: "Mainline",
+      "Build professional resumes with AI-powered suggestions, ATS optimization, and multiple templates. Get your dream job with Mainline CV.",
+    siteName: "Mainline CV",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Mainline - Modern Next.js Template",
+        alt: "Mainline CV - AI-Powered Resume Builder",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mainline - Modern Next.js Template",
+    title: "Mainline CV - AI-Powered Resume Builder",
     description:
-      "A modern Next.js template built with shadcn/ui, Tailwind & MDX. Open source - MIT License.",
+      "Build professional resumes with AI-powered suggestions, ATS optimization, and multiple templates. Get your dream job with Mainline CV.",
     images: ["/og-image.jpg"],
-    creator: "@ausrobdev",
+    creator: "@mainlinecv",
   },
 };
 
@@ -146,10 +143,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <StyleGlideProvider />
-          <Navbar />
-          <main className="">{children}</main>
-          <Footer />
+          <AuthProvider>
+            <StyleGlideProvider />
+            <LayoutWrapper>{children}</LayoutWrapper>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

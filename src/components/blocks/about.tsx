@@ -11,18 +11,18 @@ const About = () => {
       <div className="flex flex-col gap-8 lg:gap-16 xl:gap-20">
         <ImageSection
           images={[
-            { src: "/about/1.webp", alt: "Team collaboration" },
-            { src: "/about/2.webp", alt: "Team workspace" },
+            { src: "/about/1.webp", alt: "Resume building" },
+            { src: "/about/2.webp", alt: "Career success" },
           ]}
           className="xl:-translate-x-10"
         />
 
         <TextSection
-          title="The team"
+          title="Our Mission"
           paragraphs={[
-            "We started building Mainline in 2019 and launched in 2022. Every endpoint has been designed from the ground up — with no technical debt or legacy systems. We are purpose-built to power project management innovation for the next hundred years.",
-            "We are 100% founder and team-owned, profitable, and we keep our team lean. Over time, this page will become more polished, but for now, we're focused on delivering for developers.",
-            "If you're interested in building the future of PM, check out our open roles below.",
+            "We started building Mainline CV to solve a real problem: talented people missing out on opportunities simply because their resumes didn't pass through ATS systems. Our AI-powered platform ensures that never happens to you.",
+            "We're a passionate team of developers, career coaches, and AI engineers dedicated to democratizing access to professional resume tools.",
+            "Interested in joining our mission? Check out our open positions below.",
           ]}
           ctaButton={{
             href: "/careers",
@@ -35,14 +35,14 @@ const About = () => {
       <div className="flex flex-col gap-8 lg:gap-16 xl:gap-20">
         <TextSection
           paragraphs={[
-            "At Mainline, we are dedicated to transforming the way teams plan, execute, and deliver projects. Our mission is to provide our customers with an unbeatable edge over delays, inefficiencies, and disorganisation through actionable insights and seamless collaboration. We'll stop at nothing to give you the tools you need to get every project across the finish line.",
-            "We're customer-obsessed — investing the time to understand every aspect of your workflow so that we can help you operate better than ever before. We're all in this together because your success is our success. In our history as a company, we've never lost a customer, because when your projects succeed, so do we.",
+            "At Mainline CV, we believe everyone deserves a fair shot at their dream job. Our AI-powered resume builder analyzes thousands of successful resumes and job descriptions to give you personalized recommendations that actually work.",
+            "We're obsessed with results — every feature we build is designed to increase your chances of landing interviews. From ATS optimization to keyword analysis, we've got you covered at every step of your job search journey.",
           ]}
         />
         <ImageSection
           images={[
-            { src: "/about/3.webp", alt: "Modern workspace" },
-            { src: "/about/4.webp", alt: "Team collaboration" },
+            { src: "/about/3.webp", alt: "AI technology" },
+            { src: "/about/4.webp", alt: "Job success" },
           ]}
           className="hidden lg:flex xl:translate-x-10"
         />
