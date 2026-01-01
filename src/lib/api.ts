@@ -7,6 +7,22 @@ export interface ApiResponse<T> {
   message?: string;
   error?: string;
   data?: T;
+  credits?: number;
+}
+
+// Custom error for credit-related issues
+export class CreditError extends Error {
+  credits: number;
+  required: number;
+  needsUpgrade: boolean;
+
+  constructor(message: string, credits: number, required: number = 1) {
+    super(message);
+    this.name = 'CreditError';
+    this.credits = credits;
+    this.required = required;
+    this.needsUpgrade = true;
+  }
 }
 
 // Helper function for API calls
@@ -34,7 +50,15 @@ async function apiCall<T>(
   
   const data = await response.json();
   
+  // Handle credit errors specifically
   if (!response.ok) {
+    if (data.needsUpgrade || response.status === 403) {
+      throw new CreditError(
+        data.message || 'Insufficient credits',
+        data.credits || 0,
+        data.required || 1
+      );
+    }
     throw new Error(data.message || data.error || 'API request failed');
   }
   
@@ -132,7 +156,8 @@ export const atsApi = {
   analyzeResume: async (
     file: File,
     jobInfo?: { jobTitle?: string; jobDescription?: string; companyName?: string }
-  ): Promise<{ success: boolean; analysis: AtsReport; analysisId?: string; saved?: boolean; credits?: number }> => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ): Promise<{ success: boolean; analysis: AtsReport; analysisId?: string; saved?: boolean; credits?: number; parsedResumeData?: any }> => {
     const formData = new FormData();
     formData.append('resume', file);
     if (jobInfo?.jobTitle) formData.append('jobTitle', jobInfo.jobTitle);

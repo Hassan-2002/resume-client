@@ -63,12 +63,14 @@ async function openDB(): Promise<IDBDatabase> {
 }
 
 async function savePendingFile(file: File, jobInfo: JobInfo): Promise<void> {
+  // Convert file to ArrayBuffer BEFORE starting the transaction
+  // IndexedDB transactions auto-commit when the event loop is free,
+  // so we need to have all data ready before opening the transaction
+  const buffer = await file.arrayBuffer();
+  
   const db = await openDB();
   const tx = db.transaction(STORE_NAME, 'readwrite');
   const store = tx.objectStore(STORE_NAME);
-  
-  // Convert file to ArrayBuffer for storage
-  const buffer = await file.arrayBuffer();
   
   store.put({
     id: 'pending',
@@ -80,8 +82,14 @@ async function savePendingFile(file: File, jobInfo: JobInfo): Promise<void> {
   });
   
   return new Promise((resolve, reject) => {
-    tx.oncomplete = () => resolve();
-    tx.onerror = () => reject(tx.error);
+    tx.oncomplete = () => {
+      db.close();
+      resolve();
+    };
+    tx.onerror = () => {
+      db.close();
+      reject(tx.error);
+    };
   });
 }
 
@@ -670,6 +678,8 @@ export default function AtsScorePage() {
   const [error, setError] = useState<string | null>(null);
   const [needsUpgrade, setNeedsUpgrade] = useState(false);
   const [analyzedFile, setAnalyzedFile] = useState<File | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [parsedResumeData, setParsedResumeData] = useState<any>(null); // Pre-parsed data from analysis
   const [isFixingResume, setIsFixingResume] = useState(false);
   const [currentJobInfo, setCurrentJobInfo] = useState<JobInfo>({ jobTitle: '', companyName: '', jobDescription: '' });
   const [checkingPending, setCheckingPending] = useState(true);
@@ -678,11 +688,19 @@ export default function AtsScorePage() {
   const [isRateLimited, setIsRateLimited] = useState(false);
   const [remainingTime, setRemainingTime] = useState(0);
   const requestTimestamps = useRef<number[]>([]);
+  const hasCheckedPending = useRef(false);
 
-  // Check for pending file after login
+  // Check for pending file after login - only run once
   useEffect(() => {
     const checkPendingFile = async () => {
+      // Only check once
+      if (hasCheckedPending.current) {
+        setCheckingPending(false);
+        return;
+      }
+      
       if (!authLoading && isAuthenticated) {
+        hasCheckedPending.current = true;
         const pending = await getPendingFile();
         if (pending) {
           // Clear the pending file and auto-analyze
@@ -690,6 +708,9 @@ export default function AtsScorePage() {
           setCurrentJobInfo(pending.jobInfo);
           analyzeResume(pending.file, pending.jobInfo);
         }
+      } else if (!authLoading) {
+        // Not authenticated, just stop checking
+        hasCheckedPending.current = true;
       }
       setCheckingPending(false);
     };
@@ -771,6 +792,10 @@ export default function AtsScorePage() {
       if (response.success && response.analysis) {
         setReport(response.analysis);
         setAnalyzedFile(file);
+        // Store pre-parsed resume data for "Fix Resume" feature
+        if (response.parsedResumeData) {
+          setParsedResumeData(response.parsedResumeData);
+        }
         // Update credits in auth context
         if (response.credits !== undefined && response.credits >= 0) {
           updateCredits(response.credits);
@@ -790,8 +815,16 @@ export default function AtsScorePage() {
     }
   };
 
-  // Handle Fix Resume - parse the file and redirect to resume builder
+  // Handle Fix Resume - use pre-parsed data or redirect to builder
   const handleFixResume = async () => {
+    // If we have pre-parsed resume data from the analysis, use it directly
+    if (parsedResumeData) {
+      sessionStorage.setItem('pendingResumeData', JSON.stringify(parsedResumeData));
+      router.push('/resume-builder');
+      return;
+    }
+
+    // Fallback: try to parse the analyzed file (costs credits)
     if (!analyzedFile) {
       router.push('/resume-builder');
       return;

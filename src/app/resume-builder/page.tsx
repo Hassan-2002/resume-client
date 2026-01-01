@@ -162,7 +162,14 @@ export default function ResumeBuilderPage() {
       }
     } catch (error) {
       console.error('Failed to parse resume:', error);
-      setUploadError(error instanceof Error ? error.message : 'Failed to parse resume. Please try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Failed to parse resume. Please try again.';
+      
+      // Check if this is a credit error
+      if (errorMessage.toLowerCase().includes('credit') || errorMessage.toLowerCase().includes('upgrade')) {
+        setUploadError('You have run out of credits. Please upgrade your plan to continue using AI features.');
+      } else {
+        setUploadError(errorMessage);
+      }
     } finally {
       setIsParsingResume(false);
       // Reset file input
@@ -552,7 +559,14 @@ export default function ResumeBuilderPage() {
                     </p>
                   </div>
                   {uploadError && (
-                    <p className="text-sm text-destructive mt-3">{uploadError}</p>
+                    <div className="mt-3 text-center">
+                      <p className="text-sm text-destructive">{uploadError}</p>
+                      {uploadError.includes('credits') && (
+                        <Button variant="outline" size="sm" asChild className="mt-2">
+                          <Link href="/pricing">Upgrade Now</Link>
+                        </Button>
+                      )}
+                    </div>
                   )}
                 </CardContent>
               </Card>

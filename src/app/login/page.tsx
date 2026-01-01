@@ -20,33 +20,38 @@ import { useAuth } from "@/lib/auth-context";
 const Login = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { isAuthenticated, isLoading: authLoading } = useAuth();
+  const { isAuthenticated, isLoading: authLoading, checkAuth } = useAuth();
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [rememberMe, setRememberMe] = useState(false);
+  const [justLoggedIn, setJustLoggedIn] = useState(false);
 
   const redirectUrl = searchParams.get('redirect') || '/resume-builder';
 
-  // Redirect if already authenticated
+  // Redirect if already authenticated (but not if we just logged in - let handleSubmit handle that)
   useEffect(() => {
-    if (!authLoading && isAuthenticated) {
+    if (!authLoading && isAuthenticated && !justLoggedIn) {
       router.push(redirectUrl);
     }
-  }, [authLoading, isAuthenticated, router, redirectUrl]);
+  }, [authLoading, isAuthenticated, router, redirectUrl, justLoggedIn]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setIsLoading(true);
+    setJustLoggedIn(true);
 
     try {
       await authApi.login(email, password);
-      // Refresh auth state and redirect
-      window.location.href = redirectUrl;
+      // Refresh auth state
+      await checkAuth();
+      // Use router.push instead of window.location for proper SPA navigation
+      router.push(redirectUrl);
     } catch (err) {
+      setJustLoggedIn(false);
       setError(err instanceof Error ? err.message : "Invalid email or password");
     } finally {
       setIsLoading(false);
